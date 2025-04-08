@@ -1,4 +1,45 @@
-import pepita.*
+import pepita.*//importo todo el archivo pepita
+
+
+describe "Pepita"{
+
+    test "Cuando vuela 10 con energia 100, su energia queda en 80"{
+            pepita.volar(10)
+            assert.equals(80,pepita.energia())
+            //assert.equals(100,pepita.energia())//assert es como un objeto
+    }               //valorEsperado,el que resulta
+
+    test "Cuando come alpiste,su energia de 10 pasa a 120"{
+        pepita.comer(alpiste)
+        assert.equals(120,pepita.energia())
+    }
+    
+    test "Con energia 100 no puede volar 100"{
+       assert.notThat(pepita.puedeVolar(100))
+    }
+    
+    test "Con energia 100 falla al querer volar 91"{
+       // pepita.volar(91)//Esto se rompio por la excepcion
+        assert.throwsException({pepita.volar(91)}) //usar {}
+        //Testeo que no se modifico el estado
+        assert.equals(100,pepita.energia())
+    }
+}
+
+/*
+assert.equals
+assert.that
+assert.notThat
+
+*/
+
+describe "Pepon" {
+    test ""{
+
+    }
+
+}
+
 
 describe "Pepita, Pepon y Roque"{
 

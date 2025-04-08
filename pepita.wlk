@@ -1,17 +1,37 @@
 object pepita {
 	var energia = 100
 	
+	
 	method comer(comida) {
 		energia = energia + comida.energiaQueAporta()
 	}
 	
-	method volar(distancia) {
-		energia = energia - 10 - distancia
+	method puedeVolar(distancia){
+
+	return energia >= self.energiaParaVolar(distancia)
+
 	}
-		
-	method energia() {
+
+	method volar(distancia) {
+	self.validadVolar(distancia)
+	energia = energia - self.energiaParaVolar(distancia)
+	}
+
+	method validadVolar(distancia) {
+		if(not self.puedeVolar(distancia)){
+			self.error("No tengo energia para volar")
+		}
+	
+	}
+
+	method energiaParaVolar(distancia){
+		return  10 + distancia
+	}
+
+	method energia(){
 		return energia
 	}
+
 }
 
 object alpiste {
@@ -50,18 +70,34 @@ object pepon {
 	}
 		
 	method comer(comida) {
-		energia += energia + comida.energiaQueAporta() / 2
+		energia += comida.energiaQueAporta() / 2
 	}
 		
-	method volar(distancia) {
-		energia = energia - 20 - 2*distancia
+	method puedeVolar(distancia) {
+	  return energia >= self.energiaParaVolar(distancia)
 	}
+
+
+	method volar(distancia) {
+	self.validadVolar(distancia)
+	energia = energia - self.energiaParaVolar(distancia)
+	}
+		
+	method validadVolar(distancia) {
+		if(not self.puedeVolar(distancia)){//si no puede volar da error sino vuela
+		self.error("No tengo suficiente energia")
+	}
+	}
+
+	method energiaParaVolar(distancia){
+		return 20 + 2* distancia 
+	}//dejar los calculos en los metodos
 	
 }
 
 object roque {
 	var ave = pepita
-	var cenas = 0;
+	var cenas = 0
 	
 	method ave(_ave) {
 		ave = _ave
